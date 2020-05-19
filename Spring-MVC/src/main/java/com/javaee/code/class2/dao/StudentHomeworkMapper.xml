@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaee.code.class2.dao.StudentHomeworkDao">
+    <resultMap id="StudentHomeworkResultMap" type="com.javaee.code.class2.entity.StudentHomework">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="student_id" jdbcType="BIGINT" property="studentId" />
+        <result column="homework_id" jdbcType="BIGINT" property="homeworkId" />
+        <result column="homework_title" jdbcType="VARCHAR" property="homeworkTitle" />
+        <result column="homework_content" jdbcType="CLOB" property="homeworkContent" />
+        <result column="submit_time" jdbcType="TIMESTAMP" property="submitTime" />
+    </resultMap>
+    <!--  新增记录  -->
+    <insert id="submit" parameterType="StudentHomework" useGeneratedKeys="true" keyProperty="id">
+       insert into s_student_homework values(#{id},#{studentId},#{homeworkId},#{homeworkTitle},#{homeworkContent},#{submitTime})
+    </insert>
+    <!--  查询具体作业的全部记录  -->
+    <select id="selectByHwId" parameterType="Long" resultMap="StudentHomeworkResultMap">
+      select * from s_student_homework where homework_id= #{id}
+    </select>
+    <!--  查询所有记录  -->
+    <select id="selectAll" resultType="StudentHomework">
+        select * from s_student_homework
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaee.code.class2.dao.HomeworkDao">
+    <resultMap id="HomeworkResultMap" type="com.javaee.code.class2.entity.Homework">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    </resultMap>
+    <!--  新增记录  -->
+    <insert id="addHomework" parameterType="com.javaee.code.class2.entity.Homework" useGeneratedKeys="true" keyProperty="id">
+        insert into s_homework values(#{id},#{title},#{content},#{createTime},#{deadline})
+    </insert>
+    <!--  查询单条记录  -->
+    <select id="selectById" parameterType="Long" resultMap="HomeworkResultMap">
+       select * from s_homework where id = #{id}
+    </select>
+    <!--  查询所有记录  -->
+    <select id="selectAll" resultMap="HomeworkResultMap">
+      select * from s_homework
+    </select>
+</mapper>

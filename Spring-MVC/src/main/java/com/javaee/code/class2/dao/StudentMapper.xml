@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javaee.code.class2.dao.StudentDao">
+    <resultMap id="StudentResultMap" type="com.javaee.code.class2.entity.Student">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+    <!--  新增记录  -->
+    <insert id="addStudent" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+        insert into s_student values(#{id},#{name})
+    </insert>
+    <!--  查询单条记录  -->
+    <select id="selectById" parameterType="Long" resultMap="StudentResultMap">
+       select * from s_student where id= #{id}
+    </select>
+    <!--  查询所有记录  -->
+    <select id="selectAll" resultType="Student">
+        select * from s_student
+    </select>
+</mapper>
